@@ -3,7 +3,7 @@ import * as crypto from 'crypto';
 
 class Transaction {
   constructor(
-    public amount: number, 
+    public amount: number,
     public payer: string,
     public payee: string
   ) {}
@@ -54,12 +54,12 @@ class Chain {
 
     while(true) {
 
-      const hash = crypto.createHash('MD5');
+      const hash = crypto.createHash('SHA256');
       hash.update((nonce + solution).toString()).end();
 
       const attempt = hash.digest('hex');
 
-      if(attempt.substr(0,4) === '0000'){
+      if(attempt.substring(0,4) === '0000'){
         console.log(`Solved: ${solution}`);
         return solution;
       }
@@ -120,3 +120,4 @@ bob.sendMoney(23, alice.publicKey);
 alice.sendMoney(5, bob.publicKey);
 
 console.log(Chain.instance)
+console.log(Chain.instance.lastBlock.transaction.toString())
