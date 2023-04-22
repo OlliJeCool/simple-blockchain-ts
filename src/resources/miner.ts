@@ -5,7 +5,7 @@ import Chain from "./chain";
 import IMiner from "../interfaces/miner.interface";
 
 class Miner implements IMiner{
-    private transactions: Transaction[] = []
+    public transactions: Transaction[] = []
     
     mine(block: Block){
         let solution: number = 1;
